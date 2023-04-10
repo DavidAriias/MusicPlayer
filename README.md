@@ -1,2 +1,2 @@
 # MusicPlayer
-Creating a musicplayer like apple music
+Creating a music player like apple music
