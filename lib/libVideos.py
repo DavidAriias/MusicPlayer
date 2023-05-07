@@ -2,7 +2,7 @@ import pyapplemusicapi
 import re
 from googleapiclient.discovery import build
 import urllib.request
-import json
+import requests
 from FastAPI.routers.models.video_data import VideoContain 
 
 
@@ -56,20 +56,20 @@ def getChannelID(artist: str):
     '''
 
     url = getURLForConsult(artist , "official channel")
-
+   
     #Busca el nombre del artista con su nombre personalizado
     html = urllib.request.urlopen(url)
     resultsChannels_ids = re.findall(r"/@(\S{23})",html.read().decode()) [0]
     personalizeID = resultsChannels_ids
     personalizeID = personalizeID.split('"')[0]
-   
+
     #Busca el canal del artista
     consult = "https://www.youtube.com/@%s" % (personalizeID)
     htmlProfile = urllib.request.urlopen(consult)
     #Trae el id del canal de artista que servira despues para traer info de su canal de YT
     channel_id = re.findall(r"channel_id=(\S{24})",htmlProfile.read().decode())
    
-    return channel_id[0]
+    return  channel_id[0]
 
 def getPlaylistID(artist: str):
 
@@ -121,7 +121,7 @@ def getPlaylistID(artist: str):
         if idPlaylist != None:
             break
     
-    #Retorna el id de la playlist en caso de haberlo encontrado, si no retornad None
+    #Retorna el id de la playlist en caso de haberlo encontrado, si no retorna None
     return idPlaylist
 
 def getIDMusicVideos(artist: str):
@@ -144,7 +144,15 @@ def getIDMusicVideos(artist: str):
             if IDs != None:
                 listIDVideos.append(IDs)
     else:
-        listIDVideos = getIDVideosForPlaylistYT(idPlaylist)
+        listIDVideos = getIDVideosForPlaylistYT(idPlaylist, artist)
+
+
+    if len(listIDVideos) == 0:
+        videos = pyapplemusicapi.search(query=artist ,media='musicVideo', limit=20)
+        for video in videos:
+            IDs = getIDVideosForItunes(video.name, artist)
+            if IDs != None:
+                listIDVideos.append(IDs)
     
     #Retorna las urls de los videos musicales
     return listIDVideos
@@ -163,9 +171,10 @@ def getIDVideosForItunes(videoName: str, artist: str):
     url = getURLForConsult(deleteSpaces(artist),deleteSpaces(videoName))
     try:
         #Obtiene el html de las busqueadas del video
-        html = urllib.request.urlopen(url)
+        response = requests.get(url)
+        html = response.content.decode(encoding="utf-8")
         #Obtiene el id del primer video encontrado
-        videos_ids = re.findall(r"watch\?v=(\S{11})",html.read().decode())[0]
+        videos_ids = re.findall(r"watch\?v=(\S{11})",html)[0]
         
     except:
         print("No se ha podido buscar el video " + videoName )
@@ -173,7 +182,7 @@ def getIDVideosForItunes(videoName: str, artist: str):
     return videos_ids
     
     
-def getIDVideosForPlaylistYT(idPlaylist: str):
+def getIDVideosForPlaylistYT(idPlaylist: str, artist: str):
     '''
     Obtiene las url de los videos de la playlist del artista encontrado en su canal de YT
 
@@ -188,7 +197,7 @@ def getIDVideosForPlaylistYT(idPlaylist: str):
     request =  token.playlistItems().list(
         part="snippet",
         playlistId = idPlaylist,
-        maxResults = "50"
+        maxResults = "30"
     )
 
     results = request.execute()
@@ -200,8 +209,9 @@ def getIDVideosForPlaylistYT(idPlaylist: str):
     #Itera todos los videos
     for item in items_in_playlist:
         title = item["snippet"]["title"]
-        aux = title.lower()
-        if aux.find("teaser") != -1:
+        aux : str = title.lower()
+
+        if aux.find("teaser") != -1 or re.search(artist.lower(), aux) is None:
             continue
         else:
             videoID = item["snippet"]["resourceId"]["videoId"]
@@ -229,7 +239,7 @@ def getMusicVideos(artist: str):
         listMusicVideos.append(
             VideoContain(
             title= item['snippet']['title'],
-            url= "https://www.youtube.com/watch?v=" + item['id'],
+            url= item['id'],
             year=releaseYear,
             thumbnail_url= item['snippet']['thumbnails']['medium']['url']
             )

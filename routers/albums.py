@@ -1,6 +1,7 @@
 from FastAPI.lib.libSpotifyAPI import getSpotifyToken
 from fastapi import APIRouter
 from FastAPI.routers.models.album_contain import AlbumContain
+from FastAPI.lib.libSongs import getSongID
 
 albums = APIRouter()
 
@@ -16,10 +17,10 @@ async def get_albums_contain(uri: str):
         listTracks.append(AlbumContain(
             trackNumber= item["track_number"],
             name=item["name"],
-            url= item["preview_url"],
+            url= getSongID(item["artists"][0]["name"],item["name"]),
             uri= item["uri"]
         ))
 
-    return items
+    return listTracks
 
     

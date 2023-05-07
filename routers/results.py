@@ -12,12 +12,12 @@ async def search(artist: str):
     artists = []
 
     for result in results['artists']['items']:
-        if len(result['images']) > 0  or len(result['genres']) > 0:
+        if len(result['images']) > 0  and len(result['genres']) > 0:
             artists.append(Artists(
                 name=result['name'], 
                 images=result['images'], 
                 genre=result['genres'],
-                type=result['type'] ,
+                type= result['type'] ,
                 uri=result['uri']
             ))
     return  artists
