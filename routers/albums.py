@@ -1,7 +1,7 @@
-from FastAPI.lib.libSpotifyAPI import getSpotifyToken
+from lib.libSpotifyAPI import getSpotifyToken
 from fastapi import APIRouter
-from FastAPI.routers.models.album_contain import AlbumContain
-from FastAPI.lib.libSongs import getSongID
+from routers.models.album_contain import AlbumContain
+from lib.libSongs import getSongID
 
 albums = APIRouter()
 
