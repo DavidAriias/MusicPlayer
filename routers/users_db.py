@@ -1,9 +1,9 @@
 from fastapi import APIRouter , HTTPException
-from FastAPI.db.client import db_client
-from FastAPI.db.models.user_model import UserModel
+from db.client import db_client
+from db.models.user_model import UserModel
 from werkzeug.security import generate_password_hash, check_password_hash
-from FastAPI.db.schemas.user_schema import userSchema
-from FastAPI.db.schemas.playlist_schema import playlistsSchema
+from db.schemas.user_schema import userSchema
+from db.schemas.playlist_schema import playlistsSchema
 
 users_db = APIRouter()
 
