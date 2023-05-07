@@ -1,6 +1,6 @@
 import re
 import requests
-from FastAPI.lib.libVideos import deleteSpaces , getURLForConsult
+from lib.libVideos import deleteSpaces , getURLForConsult
 
 def getSongID(artist: str, song: str):
 
