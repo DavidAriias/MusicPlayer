@@ -3,7 +3,7 @@ import re
 from googleapiclient.discovery import build
 import urllib.request
 import requests
-from FastAPI.routers.models.video_data import VideoContain 
+from routers.models.video_data import VideoContain 
 
 
 API_KEY = "AIzaSyCV1KcPcDlCG5YrhQjVRN7W-ijzFqE1Y7g"
