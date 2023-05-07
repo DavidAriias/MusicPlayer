@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from FastAPI.routers import artistProfile , results, users_db,albums  , playlist_user_db, searchImages
+from routers import artistProfile , results, users_db,albums  , playlist_user_db, searchImages
 
 app = FastAPI(title= "Backend", 
             description="Se encuentra toda la informacion de la app, tanto del consumo de API'S como de la base de datos",
