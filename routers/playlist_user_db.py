@@ -1,8 +1,8 @@
 from fastapi import APIRouter , HTTPException , status
-from FastAPI.db.client import db_client
-from FastAPI.db.models.playlist_model import PlaylistModel
-from FastAPI.db.schemas.playlist_schema import playlistSchema
-from FastAPI.db.schemas.user_schema import userSchema
+from db.client import db_client
+from db.models.playlist_model import PlaylistModel
+from db.schemas.playlist_schema import playlistSchema
+from db.schemas.user_schema import userSchema
 from bson import ObjectId
 
 playlist_user_db = APIRouter()
