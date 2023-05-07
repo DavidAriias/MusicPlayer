@@ -1,6 +1,6 @@
 from fastapi import APIRouter
-from FastAPI.lib.libSpotifyAPI import getSpotifyToken
-from FastAPI.routers.models.artists import Artists
+from lib.libSpotifyAPI import getSpotifyToken
+from routers.models.artists import Artists
 
 results = APIRouter()
 
