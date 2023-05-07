@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from routers import artistProfile , results, users_db,albums  , playlist_user_db, searchImages
+import os
 
 app = FastAPI(title= "Backend", 
             description="Se encuentra toda la informacion de la app, tanto del consumo de API'S como de la base de datos",
@@ -11,6 +12,8 @@ app.include_router(users_db.users_db)
 app.include_router(albums.albums)
 app.include_router(playlist_user_db.playlist_user_db)
 app.include_router(searchImages.search_image)
+
+host_server = os.environ.get('host_server', 'localhost')
 
 @app.get("/")
 async def read_root():
