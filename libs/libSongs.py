@@ -9,7 +9,7 @@ def getSongID(artist: str, song: str):
     
     artistSong = deleteSpaces(newSong +' '+ newArtist)
 
-    url = getURLForConsult(artistSong, "official audio")
+    url = getURLForConsult(artistSong, "audio")
     response = requests.get(url)
     html = response.content.decode(encoding="utf-8")
  
