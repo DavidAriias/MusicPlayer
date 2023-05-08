@@ -7,7 +7,7 @@ def getSongID(artist: str, song: str):
     newArtist = deleteSpaces(transformToUnitCode(artist))
     newSong = deleteSpaces(transformToUnitCode(song))
     
-    artistSong = deleteSpaces(newSong +' '+ newArtist)
+    artistSong = deleteSpaces(newArtist +' '+newSong)
 
     url = getURLForConsult(artistSong, "audio")
     response = requests.get(url)
