@@ -26,7 +26,7 @@ async def get_user_data(email : str , password : str):
     if error is None:
        return playlistsSchema(db_client.playlists.find({'idUser' : user['id']}))
     else:
-        return error
+        raise error
 
     
 @users_db.post('/users')
