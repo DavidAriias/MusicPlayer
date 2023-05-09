@@ -44,7 +44,7 @@ async def create_user(data_user: UserModel):
 
         return UserModel(**new_user)
     else:
-        return HTTPException(403, "User registrated")
+        raise HTTPException(403, "User registrated")
 
 @users_db.put('/users/{email}/{password}')
 async def modify_user(data_user: UserModel):
