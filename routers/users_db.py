@@ -21,7 +21,7 @@ async def get_user_data(email : str , password : str):
     if user is None:
        error =  HTTPException(403, "User or password wrong")
     elif not check_password_hash(user['password'], password):
-       error =  HTTPException(403, "User or password wrong"")
+       error =  HTTPException(403, "User or password wrong")
     
     if error is None:
        return playlistsSchema(db_client.playlists.find({'idUser' : user['id']}))
