@@ -18,9 +18,11 @@ async def get_albums_contain(uri: str):
             trackNumber= item["track_number"],
             name=item["name"],
             url= getSongID(item["artists"][0]["name"],item["name"]),
-            uri= item["uri"]
         ))
 
-    return listTracks
+    return {
+        "artist": items[0]["artists"][0]["name"],
+        "data": listTracks
+    }
 
     
