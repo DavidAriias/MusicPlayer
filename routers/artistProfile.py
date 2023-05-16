@@ -25,6 +25,7 @@ async def get_top_songs(uri: str):
             album=track["album"]["name"],
             release=releaseYear,
             url= getSongID(track["artists"][0]["name"],track["name"])
+            albumUri = track["album"]["uri"]
 
         ))
 
