@@ -6,3 +6,4 @@ class TopSongs(BaseModel):
     album: str
     release: str
     url: str
+    albumUri: str
