@@ -3,6 +3,7 @@ def playlistSchema(playlist) -> dict:
         'id': str(playlist['_id']),
         'idUser': playlist['idUser'],
         'namePlaylist': playlist['namePlaylist'],
+        'description': playlist['description'],
         'songs': playlist['songs'],
         'musicVideos': playlist['musicVideos']
     }
