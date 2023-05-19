@@ -19,11 +19,13 @@ async def create_playlsit(data_playlist: PlaylistModel):
 
     del playlist_dict['id']
     del playlist_dict['emailUser']
+    
+    id = db_client.playlists.insert_one(playlist_dict).inserted_id
 
-    db_client.playlists.insert_one(playlist_dict)
+    new_playlist = playlistSchema(db_client.playlists.find_one({'_id': id}))
 
-
-    return status.HTTP_201_CREATED
+    return playlistSchema(**new_playlist)
+    
 
 @playlist_user_db.put('/playlists')
 async def modify_playlist(data_playlist: PlaylistModel):  
