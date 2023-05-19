@@ -6,5 +6,4 @@ class PlaylistModel(BaseModel):
     idUser: str | None
     namePlaylist: str   
     description: str | None
-    songs: list[dict] | None
-    musicVideos: list[dict] | None
+    audioTracks: list[dict] | None
