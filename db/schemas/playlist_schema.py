@@ -4,6 +4,7 @@ def playlistSchema(playlist) -> dict:
         'idUser': playlist['idUser'],
         'namePlaylist': playlist['namePlaylist'],
         'description': playlist['description'],
+        'image': playlist['image'],
         'audioTracks': playlist['audioTracks'],
     }
 
