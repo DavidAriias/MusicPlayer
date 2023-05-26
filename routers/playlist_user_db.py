@@ -24,7 +24,7 @@ async def create_playlsit(data_playlist: PlaylistModel):
 
     new_playlist = playlistSchema(db_client.playlists.find_one({'_id': id}))
 
-    return playlistSchema(**new_playlist)
+    return PlaylistModel(**new_playlist)
     
 
 @playlist_user_db.put('/playlists')
