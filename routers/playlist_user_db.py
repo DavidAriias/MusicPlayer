@@ -1,7 +1,7 @@
 from fastapi import APIRouter , HTTPException , status
 from db.client import db_client
 from db.models.playlist_model import PlaylistModel
-from db.schemas.playlist_schema import playlistSchema
+from db.schemas.playlist_schema import playlistSchema, playlistsSchema
 from db.schemas.user_schema import userSchema
 from bson import ObjectId
 
@@ -38,10 +38,9 @@ async def modify_playlist(data_playlist: PlaylistModel):
    
     del playlist_dic['id']
   
-    response = db_client.playlists.find_one_and_update({'_id': ObjectId(data_playlist.id)} , {'$set': playlist_dic })
-    update_playlist = playlistsSchema(db_client.playlists.find({'idUser' : user['id']}))
+    db_client.playlists.find_one_and_update({'_id': ObjectId(data_playlist.id)} , {'$set': playlist_dic })
 
-    return PlaylistModel(**update_playlist)
+    return playlistsSchema(db_client.playlists.find({'idUser' : data_playlist.idUser}))
     
 
 @playlist_user_db.delete('/playlists/{playlist_id}')
