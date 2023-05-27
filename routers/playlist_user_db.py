@@ -40,7 +40,7 @@ async def modify_playlist(data_playlist: PlaylistModel):
   
     response = db_client.playlists.find_one_and_update({'_id': ObjectId(data_playlist.id)} , {'$set': playlist_dic })
 
-    return status.HTTP_202_ACCEPTED
+    return playlistsSchema(db_client.playlists.find({'idUser' : user['id']}))
 
     
 
