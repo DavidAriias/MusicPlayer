@@ -39,9 +39,9 @@ async def modify_playlist(data_playlist: PlaylistModel):
     del playlist_dic['id']
   
     response = db_client.playlists.find_one_and_update({'_id': ObjectId(data_playlist.id)} , {'$set': playlist_dic })
+    update_playlist = playlistsSchema(db_client.playlists.find({'idUser' : user['id']}))
 
-    return playlistsSchema(db_client.playlists.find({'idUser' : user['id']}))
-
+    return PlaylistModel(**update_playlist)
     
 
 @playlist_user_db.delete('/playlists/{playlist_id}')
