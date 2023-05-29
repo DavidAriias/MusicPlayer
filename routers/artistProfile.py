@@ -57,12 +57,15 @@ async def get_about_artist(artist: str):
     result = findTypeArtist(artist)
     isSinger : bool = result[0]
     htmlSinger = result[1]
-
-    if isSinger == True:
-        artist =  about_artist.AboutArtist(summary = getSummary(artist,isSinger,htmlSinger ), origin= getHomeTownArtist(htmlSinger) ,date= getBirthdayFromArtist(htmlSinger), isSinger = True) 
-    else:
-        artist = about_artist.AboutArtist(summary = getSummary(artist,isSinger, None), origin= getOriginGroup(artist),date= getDebutedDateFromGroup(artist) , isSinger = False) 
     
+    try:
+        if isSinger == True:
+            artist =  about_artist.AboutArtist(summary = getSummary(artist,isSinger,htmlSinger ), origin= getHomeTownArtist(htmlSinger) ,date= getBirthdayFromArtist(htmlSinger), isSinger = True) 
+        else:
+            artist = about_artist.AboutArtist(summary = getSummary(artist,isSinger, None), origin= getOriginGroup(artist),date= getDebutedDateFromGroup(artist) , isSinger = False) 
+    catch:
+        artist = about_artist.AboutArtist(summary = "", origin= "",date= "" , isSinger = False) 
+        
     return artist
 
 @artistInfo.get("/artist/similar/{uri}")
