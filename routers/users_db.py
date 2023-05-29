@@ -46,7 +46,7 @@ async def create_user(data_user: UserModel):
     else:
         raise HTTPException(403, "User registrated")
 
-@users_db.put('/users/{email}/{password}')
+@users_db.put('/users')
 async def modify_user(data_user: UserModel):
 
     data_user.password = generate_password_hash(data_user.password, "pbkdf2:sha256:30", 50)
