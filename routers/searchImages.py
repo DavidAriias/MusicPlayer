@@ -60,7 +60,7 @@ async def search_images():
         },
         {
         "genre": 'Classical',
-        "image": 'https://th.bing.com/th/id/R.44a4ca299b48d2998f319a18078f44a6?rik=gXJS%2fMSR0n5VzA&riu=http%3a%2f%2fpngimg.com%2fuploads%2fviolin%2fviolin_PNG12842.png&ehk=xm%2b%2bvBGBJJkLNfta8jz%2bnTfJG%2fQ3EY6Nfxr2SSFd6Nc%3d&risl=&pid=ImgRaw&r=0',
+        "image": 'https://discoveryinstitutioncom.files.wordpress.com/2020/07/french-classical-music-1.jpg?w=750',
         },
         {
         "genre": 'Jazz',
