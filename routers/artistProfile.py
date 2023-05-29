@@ -87,8 +87,12 @@ async def get_similar_artist(uri: str):
 
 @artistInfo.get("/artist/musicVideos/{artist}")
 async def get_music_videos_data(artist: str):
-
-    return getMusicVideos(artist)
+    videos = []
+    try:
+       videos = getMusicVideos(artist)
+    except:
+        pass
+    return videos
     
     
 
