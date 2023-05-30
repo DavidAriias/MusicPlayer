@@ -46,10 +46,14 @@ async def modify_playlist(data_playlist: PlaylistModel):
 @playlist_user_db.delete('/playlists/{playlist_id}')
 async def delete_playlist(playlist_id : str):
 
+    playlist = playlistSchema(db_client.playlists.find_one({'_id': ObjectId(playlist_id)}))
+
+    id_user = playlist['idUser']
+
     response = db_client.playlists.delete_one({'_id': ObjectId(playlist_id)})
-    
+
     if response.raw_result['n'] == 1:
-        return status.HTTP_202_ACCEPTED
+        return playlistsSchema(db_client.playlists.find({'idUser': id_user}))
     else:
         return status.HTTP_404_NOT_FOUND
     
