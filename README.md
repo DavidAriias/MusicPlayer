@@ -6,6 +6,8 @@ Reproductor de música basado en el UI de Apple Music.
   
   <img width="259" alt="image" src="https://github.com/DavidAriias/MusicPlayer/assets/112224260/db536889-8034-4198-9edd-80de2cd91d54">
   <img width="261" alt="image" src="https://github.com/DavidAriias/MusicPlayer/assets/112224260/dd268df8-25e5-48a6-be54-e919998e2927">
+  <img width="254" alt="image" src="https://github.com/DavidAriias/MusicPlayer/assets/112224260/d288b8ac-a0a5-46ed-822a-2c1df93fe96d">
+
   
 </div>
 
