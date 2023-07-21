@@ -25,3 +25,6 @@ Flutter/Dart para desarrollo del UI de la aplicación
 Python para desarrollo del backend con el framework de FastAPI, implementando SpotifyAPI, Youtube Data API, Web Scraping, etc.
 
 MongoDB utilizado para guardar los datos del usuario, así como las canciones, desplegado en MongoDB Atlas.
+
+Nota:
+En caso de descargarla la app y probarla, como el backend no esta en produccion no funcionara, en caso de probarlo, descargar el backend y probarlo de manera local
